@@ -1,0 +1,10 @@
+{
+    "Doctors": true,
+    "Locations": true,
+    "Specialties": true,
+    "Pharmacies": true,
+    "Laboratories": true,
+    "Shared": true,
+    "WorkingHours": true,
+    "MedicalCenters": true
+}

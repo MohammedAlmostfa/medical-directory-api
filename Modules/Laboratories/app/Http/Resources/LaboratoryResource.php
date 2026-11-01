@@ -1,0 +1,46 @@
+<?php
+
+namespace Modules\Laboratories\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class LaboratoryResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'address' => $this->address,
+            'map_url' => $this->map_url,
+            'phone' => $this->phone,
+            'mobile' => $this->mobile,
+            'whatsapp' => $this->whatsapp,
+            'description' => $this->description,
+            'image' => $this->image,
+            'home_visit' => $this->home_visit,
+
+            'services' => $this->whenLoaded(
+                'services',
+                fn () => $this->services->map(fn ($service) => [
+                    'id' => $service->id,
+                    'name' => $service->name,
+                    'description' => $service->description,
+                ])->values()
+            ),
+
+            'area' => $this->whenLoaded('area', fn () => [
+                'id' => $this->area?->id,
+                'name' => $this->area?->name,
+
+                'governorate' => $this->area?->relationLoaded('governorate')
+                    ? [
+                        'id' => $this->area->governorate?->id,
+                        'name' => $this->area->governorate?->name,
+                    ]
+                    : null,
+            ]),
+        ];
+    }
+}

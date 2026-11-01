@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/medicalcenters",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\MedicalCenters\\": "app/",
+            "Modules\\MedicalCenters\\Database\\Factories\\": "database/factories/",
+            "Modules\\MedicalCenters\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\MedicalCenters\\Tests\\": "tests/"
+        }
+    }
+}
