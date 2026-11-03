@@ -30,6 +30,16 @@ class LaboratoryResource extends JsonResource
                 ])->values()
             ),
 
+            'workingHours' => $this->whenLoaded(
+                'workingHours',
+                fn () => $this->workingHours->map(fn ($workingHour) => [
+                    'id' => $workingHour->id,
+                    'day_of_week' => $workingHour->day_of_week,
+                    'start_minute' => $workingHour->start_minute,
+                    'end_minute' => $workingHour->end_minute,
+                ])->values()
+            ),
+
             'area' => $this->whenLoaded('area', fn () => [
                 'id' => $this->area?->id,
                 'name' => $this->area?->name,

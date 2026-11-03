@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Specialties\Http\Controllers\SpecialtiesController;
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('specialties', SpecialtiesController::class)->names('specialties');
-});
+Route::post('/specialties', [SpecialtyController::class, 'store']);
+Route::put('/specialties/{id}', [SpecialtyController::class, 'update'])
+    ->whereNumber('id');
+Route::patch('/specialties/{id}', [SpecialtyController::class, 'update'])
+    ->whereNumber('id');
+Route::delete('/specialties/{id}', [SpecialtyController::class, 'destroy'])
+    ->whereNumber('id');

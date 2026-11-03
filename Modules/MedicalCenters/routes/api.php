@@ -3,6 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use Modules\MedicalCenters\Http\Controllers\MedicalCentersController;
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('medicalcenters', MedicalCentersController::class)->names('medicalcenters');
-});
+Route::post('/medical-centers', [MedicalCenterController::class, 'store']);
+
+Route::put('/medical-centers/{id}', [MedicalCenterController::class, 'update'])
+    ->whereNumber('id');
+
+Route::patch('/medical-centers/{id}', [MedicalCenterController::class, 'update'])
+    ->whereNumber('id');
+
+Route::delete('/medical-centers/{id}', [MedicalCenterController::class, 'destroy'])
+    ->whereNumber('id');

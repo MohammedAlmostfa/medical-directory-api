@@ -12,7 +12,7 @@ class LaboratoryController extends Controller
     {
         $laboratories = Laboratory::query()
             ->where('is_published', true)
-            ->with(['area.governorate', 'services'])
+            ->with(['area.governorate', 'services','workingHours'])
             ->orderBy('name')
             ->get();
 

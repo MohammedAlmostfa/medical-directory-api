@@ -21,6 +21,16 @@ class DoctorResource extends JsonResource
             'about' => $this->about,
             'profile_image' => $this->profile_image,
 
+            'workingHours' => $this->whenLoaded(
+                'workingHours',
+                fn () => $this->workingHours->map(fn ($workingHour) => [
+                    'id' => $workingHour->id,
+                    'day_of_week' => $workingHour->day_of_week,
+                    'start_minute' => $workingHour->start_minute,
+                    'end_minute' => $workingHour->end_minute,
+                ])->values()
+            ),
+
             'specialty' => $this->whenLoaded('specialty', fn () => [
                 'id' => $this->specialty?->id,
                 'name' => $this->specialty?->name,

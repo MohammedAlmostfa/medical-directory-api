@@ -54,7 +54,7 @@ class Laboratory extends Model
     /**
      * Get the services offered by this laboratory.
      */
-    public function labServices(): BelongsToMany
+    public function Services(): BelongsToMany
     {
         return $this->belongsToMany(
             LabService::class,

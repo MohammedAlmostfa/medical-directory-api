@@ -18,9 +18,17 @@ class MedicalCenterResource extends JsonResource
             'phone' => $this->phone,
             'mobile' => $this->mobile,
             'whatsapp' => $this->whatsapp,
-            'description' => $this->description,
+            'about' => $this->description,
             'image' => $this->image,
-
+     'workingHours' => $this->whenLoaded(
+                'workingHours',
+                fn () => $this->workingHours->map(fn ($workingHour) => [
+                    'id' => $workingHour->id,
+                    'day_of_week' => $workingHour->day_of_week,
+                    'start_minute' => $workingHour->start_minute,
+                    'end_minute' => $workingHour->end_minute,
+                ])->values()
+            ),
             'specialties' => $this->whenLoaded(
                 'specialties',
                 fn () => $this->specialties->map(fn ($specialty) => [
